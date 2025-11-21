@@ -42,7 +42,16 @@ O una Computadora/Tablet con navegador web moderno (Chrome, Firefox, Edge) para 
 Conexión: Acceso a Internet estable (Wi-Fi o Datos Móviles).
 Cámara: Funcional para el escaneo de códigos de barras de productos.
 * **Instalación**
-  
+  Ingresa a la plataforma: Abre la aplicación móvil o navega a la dirección web proporcionada.
+Crea tu cuenta:
+Selecciona "Registrarse".
+Ingresa tus datos básicos (Nombre, Correo, Contraseña).
+Confirma tu cuenta si es necesario.
+Inicia Sesión: Usa tus credenciales para acceder al panel principal.
+* **Configuración**
+  La configuración del sistema es un paso fundamental para garantizar que la comunicación entre módulos funcione correctamente. En el backend, es necesario crear y configurar un archivo .env donde se definan las variables sensibles del proyecto, tales como MONGO_URI para la base de datos, JWT_SECRET para la autenticación, la URL base que provee Cloud Run y el puerto de ejecución. Para ambientes en producción, estas variables deben almacenarse de manera segura en Google Secret Manager, de modo que puedan enlazarse posteriormente al servicio en Cloud Run. En la aplicación móvil y el frontend web se debe actualizar la variable API_BASE_URL para que apunte correctamente al dominio generado por Cloud Run, asegurando que las solicitudes se dirijan al backend en producción. Si se prueba con un prototipo IoT (Vibe Pod), debe configurarse el ESP32 con el SSID y contraseña de la red del campus y registrar el deviceKey asignado por el backend.
+* **Comandos para ejecutar**
+  Los comandos de ejecución para cada módulo permiten poner en marcha el sistema de forma sencilla. El backend se inicia con npm run dev en modo desarrollo o con npm start en producción, mientras que el frontend web se levanta con npm run dev. La aplicación móvil se ejecuta mediante flutter run. En producción, el backend se despliega directamente en Cloud Run mediante gcloud run deploy, usando una imagen generada por Cloud Build y almacenada en Artifact Registry. Con todos los servicios en funcionamiento, el prototipo queda totalmente operativo, permitiendo la interacción completa entre el Vibe Pod, la aplicación móvil y el backend en la nube.
 
 ## Capturas de Pantalla
 *(Espacio reservado para capturas de pantalla del prototipo funcionando)*
