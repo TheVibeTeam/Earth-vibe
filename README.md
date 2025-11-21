@@ -7,8 +7,8 @@
 *   **Fecha:** Noviembre 2025
 
 ### Equipo del Proyecto
-1.  **Villogas Gaspar, Alessandro** - Software Full-Stack / Desarrollo
-2.  **Cerron Villar, Maricielo Sarai** - Integrante del Equipo
+1.  **Villogas Gaspar, Alessandro**
+2.  **Cerron Villar, Maricielo Sarai**
 
 ---
 
