@@ -1,33 +1,23 @@
 # Earth Vibe - Sistema Social de Reciclaje Inteligente
 
-## 👥 Equipo de Desarrollo
+## Equipo: The Vibe Team
 
 Este proyecto ha sido posible gracias al trabajo colaborativo de:
 
 | Integrante | Rol Principal | GitHub |
 | :--- | :--- | :--- |
-| **Villogas Gaspar, Alessandro** | *Project Lead & Backend* | [@AlessandroVG](https://github.com/AlessandroVG) |
-| **Cerron Villar, Maricielo Sarai** | *Lead Developer (Mobile & Frontend)* | [@MaricieloCV](https://github.com/MaricieloCV) |
-
-> *Nota: Los roles son referenciales según la contribución al repositorio.*
-
+| **Villogas Gaspar, Alessandro** | *Líder técnico y desarrollador full-stack* | [@AlessandroVG](https://github.com/AlessandroVG) |
+| **Cerron Villar, Maricielo Sarai** | *Líder de gestión, investigación y experiencia del usuario* | [@MaricieloCV](https://github.com/MaricieloCV) |
+Fecha: 21/11/25
 ---
 
-## Problema Encontrado
-La contaminación por plásticos de un solo uso es un problema crítico en el campus universitario. A pesar de que la comunidad estudiantil conoce la importancia del reciclaje, existe una "brecha de intención-acción": la falta de incentivos atractivos y la inconveniencia de los sistemas actuales provocan bajas tasas de reciclaje y contaminación cruzada en los contenedores.
-
-**Afectados:** Comunidad universitaria, personal de limpieza y el medio ambiente local.
-**Importancia:** Resolver este problema mejora la imagen institucional, reduce la huella ecológica y promueve hábitos sostenibles mediante tecnología (Smart Campus).
+## Problema 
+La contaminación por plásticos de un solo uso es un problema crítico en el campus universitario. A pesar de que la comunidad estudiantil conoce la importancia del reciclaje, existe una "brecha de intención-acción": la falta de incentivos atractivos y la inconveniencia de los sistemas actuales provocan bajas tasas de reciclaje y contaminación cruzada en los contenedores. Afectando a la comunidad universitaria, personal de limpieza y el medio ambiente local.Esto no solo afecta la comodidad, sino también la percepción de bienestar y seguridad ambiental dentro de la universidad. Por ello es importante resolver este problema ya que mejora la imagen institucional, reduce la huella ecológica y promueve hábitos sostenibles mediante tecnología.
 
 ---
 
 ## Solución Propuesta
-**Earth Vibe** es un ecosistema socio-tecnológico que combina hardware IoT y una aplicación móvil gamificada para incentivar el reciclaje.
-
-**Diferenciadores:**
-*   **Vibe Pod (Hardware):** Quiosco inteligente que valida automáticamente las botellas mediante código de barras, evitando el fraude y la contaminación cruzada. Genera un código QR único por transacción.
-*   **App Earth Vibe (Software):** Aplicación donde el usuario escanea el QR del quiosco para ganar puntos, subir de nivel en el ranking y canjear recompensas.
-*   **Gamificación:** Transforma el acto de reciclar en una experiencia divertida y competitiva.
+Nuestra solución es Earth Vibe, un sistema socio-tecnológico que   combina   hardware,   software   y   comunidad   para transformar  el  reciclaje  en  una  experiencia  motivadora.  El dispositivo físico, llamado Vibe Pod, escanea el código de barras de cada botella, valida que sea PET y genera un QR con puntos según lo reciclado; mientras que la app Earth Vibe permite al estudiante  escanear  ese  QR  y  recibir  puntos,  subir  en  un ranking,  completar  misiones  y  compartir  logros  en  una  red social ambiental interna. Esto genera hábitos positivos basados en  gamificación  y  reconocimiento  social.  A  diferencia  de  un tacho tradicional, Earth Vibe valida el material desde el origen, evita la contaminación cruzada, entrega recompensas reales, crea  una  comunidad  activa  y  genera  datos  útiles  para  la universidad, lo que lo convierte en una solución mucho más efectiva que lo existente.
 
 ---
 
@@ -39,69 +29,29 @@ El proyecto utiliza un stack moderno y escalable:
 *   **Móvil:** Flutter (Dart) para Android e iOS.
 *   **Integraciones:** OpenFoodFacts API (Validación de productos), Firebase (Notificaciones), Socket.IO (Tiempo real).
 *   **Hardware (IoT):** Integración conceptual con Raspberry Pi y lectores de código de barras.
-
----
-
-## Documentación
-Para una guía detallada, consulta los manuales en la carpeta `docs/`:
-
-*   📘 **[Manual de Usuario](docs/MANUAL_USUARIO.md):** Guía paso a paso para usar la aplicación y reciclar.
-*   🛠️ **[Manual Técnico](docs/MANUAL_TECNICO.md):** Arquitectura, flujo de datos y explicación de componentes para desarrolladores.
-*   ⚙️ **[Manual de Instalación](docs/MANUAL_INSTALACION.md):** Instrucciones para desplegar el backend, frontend y app móvil.
-
+*   **Cloud:** Google Cloud (Cloud Run para servicios), Secret Manager, Artifact Registry / Container Registry, Cloud Build
+  
 ---
 
 ## Cómo Ejecutar el Proyecto
-
-### Instalación Rápida
-El proyecto es modular. Para iniciar el servidor principal (Backend):
-
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone <url-del-repo>
-    cd Earth-Vibe
-    ```
-
-2.  **Iniciar Backend:**
-    ```bash
-    cd src/backend
-    npm install
-    npm run dev
-    ```
-
-3.  **Iniciar Frontend:**
-    ```bash
-    cd ../frontend
-    npm install
-    npm run dev
-    ```
-
-> **Nota:** Para detalles sobre la configuración de variables de entorno (`.env`) y la ejecución de la app móvil, revisa el **[Manual de Instalación](docs/MANUAL_INSTALACION.md)**.
-
-2.  **Backend:**
-    ```bash
-    cd src/backend
-    npm install
-    npm start
-    ```
-
-3.  **Frontend (Web):**
-    ```bash
-    cd src/frontend
-    npm install
-    npm run dev
-    ```
-
-4.  **Móvil (App):**
-    ```bash
-    cd mobile
-    flutter pub get
-    flutter run
-    ```
-
-> Para instrucciones detalladas, consultar el [Manual de Instalación](docs/MANUAL_INSTALACION.md).
-
----
+* **Requisitos**
+Para utilizar Earth Vibe, necesitas:
+Dispositivo:
+Un Smartphone (Android/iOS) para la App Móvil.
+O una Computadora/Tablet con navegador web moderno (Chrome, Firefox, Edge) para la versión Web.
+Conexión: Acceso a Internet estable (Wi-Fi o Datos Móviles).
+Cámara: Funcional para el escaneo de códigos de barras de productos.
+* **Instalación**
+  Ingresa a la plataforma: Abre la aplicación móvil o navega a la dirección web proporcionada.
+Crea tu cuenta:
+Selecciona "Registrarse".
+Ingresa tus datos básicos (Nombre, Correo, Contraseña).
+Confirma tu cuenta si es necesario.
+Inicia Sesión: Usa tus credenciales para acceder al panel principal.
+* **Configuración**
+  La configuración del sistema es un paso fundamental para garantizar que la comunicación entre módulos funcione correctamente. En el backend, es necesario crear y configurar un archivo .env donde se definan las variables sensibles del proyecto, tales como MONGO_URI para la base de datos, JWT_SECRET para la autenticación, la URL base que provee Cloud Run y el puerto de ejecución. Para ambientes en producción, estas variables deben almacenarse de manera segura en Google Secret Manager, de modo que puedan enlazarse posteriormente al servicio en Cloud Run. En la aplicación móvil y el frontend web se debe actualizar la variable API_BASE_URL para que apunte correctamente al dominio generado por Cloud Run, asegurando que las solicitudes se dirijan al backend en producción. Si se prueba con un prototipo IoT (Vibe Pod), debe configurarse el ESP32 con el SSID y contraseña de la red del campus y registrar el deviceKey asignado por el backend.
+* **Comandos para ejecutar**
+  Los comandos de ejecución para cada módulo permiten poner en marcha el sistema de forma sencilla. El backend se inicia con npm run dev en modo desarrollo o con npm start en producción, mientras que el frontend web se levanta con npm run dev. La aplicación móvil se ejecuta mediante flutter run. En producción, el backend se despliega directamente en Cloud Run mediante gcloud run deploy, usando una imagen generada por Cloud Build y almacenada en Artifact Registry. Con todos los servicios en funcionamiento, el prototipo queda totalmente operativo, permitiendo la interacción completa entre el Vibe Pod, la aplicación móvil y el backend en la nube.
 
 ## Capturas de Pantalla
 *(Espacio reservado para capturas de pantalla del prototipo funcionando)*

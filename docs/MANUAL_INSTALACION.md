@@ -82,7 +82,31 @@ Aplicación para dispositivos móviles.
     *   Ejecuta:
         ```bash
         flutter run
-        ```
+         ```
+  ### D. Vibe Pod (IoT / Raspberry Pi)
+Software de kiosco para el módulo de reciclaje.
+
+1.  **Requisitos del Sistema (Raspberry Pi OS):**
+    ```bash
+    sudo apt-get update
+    sudo apt-get install python3-tk python3-pil.imagetk
+    ```
+2.  **Navegar al directorio:**
+    ```bash
+    cd src/vibepod
+    ```
+3.  **Instalar dependencias Python:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  **Configuración:**
+    *   Copia el archivo de ejemplo: `cp .env.example .env`
+    *   Edita `.env` y asegura que `API_URL` apunte a la IP de tu servidor Backend (no uses `localhost` si corres en dispositivos distintos).
+5.  **Ejecutar:**
+    ```bash
+    python main.py
+    ```
+    *   La aplicación se abrirá en pantalla completa. Presiona `F11` o `ESC` para salir.
 
 ---
 

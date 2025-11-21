@@ -31,8 +31,17 @@ Para utilizar Earth Vibe, necesitas:
 #### A. Inicio (Dashboard)
 *   **Resumen:** Visualiza tus puntos actuales ("Eco-Points") y tu nivel de usuario.
 *   **Notificaciones:** Recibe alertas sobre nuevos desafíos o recompensas disponibles.
+#### B. Escáner de Productos (Reciclaje en Vibe Pod)
+*   **Función:** Identifica productos reciclables mediante el quiosco inteligente.
+*   **Uso:**
+    1.  Acércate a un quiosco **Vibe Pod**.
+    2.  La pantalla mostrará el mensaje: **"Escanea tu botella para reciclar"**.
+    3.  Pasa el código de barras de tu botella por el lector del quiosco.
+    4.  El sistema validará la botella. Si es válida, verás un mensaje de confirmación en verde.
+    5.  El Vibe Pod generará automáticamente un **Código QR único** en su pantalla.
+    6.  Abre tu App Móvil, selecciona "Escanear QR" y captura el código de la pantalla para reclamar tus puntos.
 
-#### B. Escáner de Productos (Reciclaje)
+#### C. Escáner de Productos (Reciclaje)
 *   **Función:** Identifica productos reciclables mediante su código de barras.
 *   **Uso:**
     1.  Ve a la sección de **Escáner**.
@@ -40,14 +49,14 @@ Para utilizar Earth Vibe, necesitas:
     3.  El sistema consultará **OpenFoodFacts** para validar el producto.
     4.  Si es válido, confirma el reciclaje para ganar puntos.
 
-#### C. Desafíos (Challenges)
+#### D. Desafíos (Challenges)
 *   **Función:** Lista de retos ecológicos activos (ej. "Recicla 5 botellas hoy").
 *   **Uso:**
     1.  Selecciona un desafío de la lista.
     2.  Sigue las instrucciones para completarlo.
     3.  Al finalizar, los puntos se sumarán automáticamente a tu perfil.
 
-#### D. Tienda de Recompensas (NaziShop/Vibe Shop)
+#### E. Tienda de Recompensas (NaziShop/Vibe Shop)
 *   **Función:** Canjea tus puntos acumulados por premios reales o virtuales.
 *   **Uso:**
     1.  Navega a la tienda.

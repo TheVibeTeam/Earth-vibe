@@ -10,7 +10,7 @@ Earth Vibe implementa una arquitectura moderna basada en microservicios y compon
 *   **Base de Datos:** Enfoque híbrido utilizando MongoDB (datos estructurados/usuarios) y SQLite (caché local/configuración ligera).
 *   **Servicios Externos:** Integración con OpenFoodFacts API para validación de productos y Firebase para notificaciones push.
 
-## 2. Tecnologías y Dependencias
+## 2. Tecnologías
 
 ### Backend (`src/backend`)
 *   **Lenguaje:** TypeScript / Node.js
@@ -36,7 +36,21 @@ Earth Vibe implementa una arquitectura moderna basada en microservicios y compon
 *   **Framework:** Flutter (Dart).
 *   **Características:** Escaneo de QR/Códigos de barras, integración con servicios nativos.
 
-## 3. Flujo Interno de Datos
+## 3.Dependencias 
+   El sistema Earth Vibe requiere las siguientes dependencias para su ejecución y compilación:
+* **Node.js v18+**: Entorno de ejecución para el backend.
+* **Express v5 (TypeScript):** Framework principal para las rutas de la API.
+* **MongoDB Atlas:** Base de datos no relacional utilizada en producción.
+* **Firebase Authentication y Cloud Messaging:** Para el inicio de sesión y notificaciones.
+* **Socket.IO v4:** Comunicación en tiempo real entre backend y frontend.
+* **Flutter SDK 3.19+:** Requerido para compilar y ejecutar la aplicación móvil.
+* **React 19 + Vite:** Framework y herramienta para el dashboard web.
+* **GSAP:** Librería de animaciones del frontend.
+* **Google Cloud Run:** Servicio donde se despliega el backend en producción.
+* **OpenFoodFacts API:** Servicio externo para validación de productos reciclados.
+* **ESP32 + lector 1D/2D:** Dependencias de hardware del Vibe Pod.
+
+## 4. Flujo Interno de Datos
 
 1.  **Interacción del Usuario:** El usuario realiza una acción (ej. escanear producto) en el Frontend o Mobile.
 2.  **Petición API:** Se envía una solicitud HTTP (REST) o evento Socket al Backend.
@@ -48,7 +62,7 @@ Earth Vibe implementa una arquitectura moderna basada en microservicios y compon
 4.  **Persistencia:** Los datos se guardan en MongoDB (nube) o SQLite (local).
 5.  **Respuesta:** El servidor responde al cliente con el resultado (JSON) y emite eventos Socket si es necesario (ej. notificar logro desbloqueado).
 
-## 4. Estructura de APIs y Componentes
+## 5. Estructura de APIs y Componentes
 
 ### Rutas Principales (`src/backend/src/Routes`)
 *   `/admin`: Endpoints para gestión administrativa.
