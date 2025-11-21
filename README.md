@@ -34,7 +34,15 @@ El proyecto utiliza un stack moderno y escalable:
 ---
 
 ## Cómo Ejecutar el Proyecto
-
+* **Requisitos**
+Para utilizar Earth Vibe, necesitas:
+Dispositivo:
+Un Smartphone (Android/iOS) para la App Móvil.
+O una Computadora/Tablet con navegador web moderno (Chrome, Firefox, Edge) para la versión Web.
+Conexión: Acceso a Internet estable (Wi-Fi o Datos Móviles).
+Cámara: Funcional para el escaneo de códigos de barras de productos.
+* **Instalación**
+  
 
 ## Capturas de Pantalla
 *(Espacio reservado para capturas de pantalla del prototipo funcionando)*
