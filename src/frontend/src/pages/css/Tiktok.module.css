@@ -1,0 +1,280 @@
+.tiktokPage {
+    background: #1b1f2a;
+    color: #e0e3e9;
+    min-height: 100vh;
+}
+
+.navbar {
+    background: #242a36;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fe2c55;
+}
+
+.navLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+.navButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    color: #e0e3e9;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    border-radius: 8px;
+}
+
+.navButton:hover {
+    background: rgba(254, 44, 85, 0.1);
+    color: #fe2c55;
+}
+
+.navButton.active {
+    background: #fe2c55;
+    color: white;
+}
+
+.mainContent {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.searchContainer {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    text-align: center;
+}
+
+.controlsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    background: #242a36;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.searchBox, 
+.downloadBox, 
+.trendingBox {
+    display: flex;
+    gap: 1rem;
+    margin: 0.5rem 0;
+}
+
+.searchInput, 
+.regionSelect {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background: #1b1f2a;
+    color: #e0e3e9;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.searchInput:focus, 
+.regionSelect:focus {
+    background: #2a303c;
+    outline: none;
+}
+
+.searchButton, 
+.downloadButton, 
+.trendingButton {
+    padding: 0.75rem 1.5rem;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    min-width: 120px;
+}
+
+.searchButton {
+    background: #fe2c55;
+}
+
+.downloadButton {
+    background: #25d366;
+}
+
+.trendingButton {
+    background: #0096ff;
+}
+
+.searchButton:hover:not(:disabled) {
+    background: #e61e43;
+    transform: translateY(-2px);
+}
+
+.downloadButton:hover:not(:disabled) {
+    background: #1fb855;
+    transform: translateY(-2px);
+}
+
+.trendingButton:hover:not(:disabled) {
+    background: #0077cc;
+    transform: translateY(-2px);
+}
+
+.searchButton:disabled,
+.downloadButton:disabled,
+.trendingButton:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.errorMessage {
+    color: #fe2c55;
+    margin-top: 1rem;
+}
+
+.resultsGrid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin-top: 2rem;
+}
+
+.videoCard {
+    background: #242a36;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.videoCard:hover {
+    transform: translateY(-4px);
+}
+
+.videoThumbnail {
+    position: relative;
+    aspect-ratio: 9/16;
+}
+
+.videoThumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.duration, 
+.imageCount {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.imageCount {
+    background: rgba(37, 211, 102, 0.8);
+}
+
+.videoInfo {
+    padding: 1rem;
+}
+
+.authorInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.authorAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.authorName {
+    font-weight: 600;
+    color: #e0e3e9;
+    font-size: 0.9rem;
+}
+
+.videoTitle {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #e0e3e9;
+}
+
+.videoStats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #a0a3a9;
+    margin: 0.75rem 0;
+}
+
+.downloadOptions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.downloadLink {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #2a303c;
+    color: #e0e3e9;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.downloadLink:hover {
+    background: #fe2c55;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.imageGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.searchSection,
+.trendingSection,
+.downloadSection {
+    background: #242a36;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}

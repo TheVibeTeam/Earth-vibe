@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package database;
+
+message User {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string password = 4;
+}
+
+message Settings {
+  bool maintenance = 1;
+  string logger = 2;
+}
+
+message WebServer {
+  string url = 1;
+  string port = 2;
+  string protocol = 3;
+  string name = 4;
+  string version = 5;
+  string description = 6;
+  string author = 7;
+  string license = 8;
+}
+
+message Collection {
+  repeated User users = 1;
+  WebServer webserver = 2;
+  Settings settings = 3;
+}

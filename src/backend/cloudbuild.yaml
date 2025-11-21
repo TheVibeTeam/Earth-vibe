@@ -1,0 +1,58 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: 
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/auralix-api:$COMMIT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/auralix-api:latest'
+      - '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: 
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/auralix-api:$COMMIT_SHA'
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        gcloud storage buckets describe gs://auralix-uploads --project=$PROJECT_ID || \
+        gcloud storage buckets create gs://auralix-uploads \
+          --project=$PROJECT_ID \
+          --location=us-central1 \
+          --default-storage-class=STANDARD \
+          --uniform-bucket-level-access && \
+        gcloud storage buckets add-iam-policy-binding gs://auralix-uploads \
+          --member=allUsers \
+          --role=roles/storage.objectViewer
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'auralix-api'
+      - '--image=gcr.io/$PROJECT_ID/auralix-api:$COMMIT_SHA'
+      - '--region=us-central1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--port=8080'
+      - '--memory=1Gi'
+      - '--cpu=1'
+      - '--timeout=600'
+      - '--min-instances=0'
+      - '--max-instances=10'
+      - '--set-env-vars=NODE_ENV=production,WEBSERVER_PORT=8080,WEBSERVER_HOST=0.0.0.0,WEBSERVER_NAME=Auralix API,WEBSERVER_VERSION=1.0.0,LOG_LEVEL=info,RATE_LIMIT_WINDOW_MS=900000,RATE_LIMIT_MAX_REQUESTS=50,GCS_BUCKET_NAME=auralix-uploads,GCP_PROJECT_ID=pro-platform-470721-v2'
+      - '--set-secrets=JWT_SECRET=JWT_SECRET:latest,SESSION_SECRET=SESSION_SECRET:latest,SECRET_KEY=SECRET_KEY:latest,MONGODB_URL=MONGODB_URL:latest,MONGODB_DB_NAME=MONGODB_DB_NAME:latest,SPOTIFY_CLIENT_ID=SPOTIFY_CLIENT_ID:latest,SPOTIFY_CLIENT_SECRET=SPOTIFY_CLIENT_SECRET:latest'
+      - '--service-account=default@pro-platform-470721-v2.iam.gserviceaccount.com'
+
+images:
+  - 'gcr.io/$PROJECT_ID/auralix-api:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/auralix-api:latest'
+
+options:
+  machineType: 'E2_HIGHCPU_8'
+  timeout: '1800s'
+  logging: CLOUD_LOGGING_ONLY

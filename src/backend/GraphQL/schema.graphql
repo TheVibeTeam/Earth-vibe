@@ -1,0 +1,255 @@
+# Users Schema
+type User {
+  id: ID!
+  email: String!
+  displayName: String
+  photoUrl: String
+  phoneNumber: String
+  role: UserRole!
+  isActive: Boolean!
+  createdAt: String!
+  totalPurchases: Int!
+  totalSpent: Float!
+  favoriteServices: [String!]
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+type UsersResponse {
+  users: [User!]!
+  total: Int!
+}
+
+type UserResponse {
+  success: Boolean!
+  message: String!
+  user: User
+}
+
+type AuthResponse {
+  success: Boolean!
+  message: String!
+  token: String
+  user: User
+}
+
+input UpdateUserInput {
+  displayName: String
+  phoneNumber: String
+  photoUrl: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input RegisterInput {
+  email: String!
+  password: String!
+  displayName: String
+  phoneNumber: String
+}
+
+# Services Schema
+type Service {
+  id: ID!
+  serviceId: String!
+  name: String!
+  description: String
+  category: ServiceCategory!
+  iconCode: Int
+  colorValue: Int
+  isActive: Boolean!
+  isFeatured: Boolean!
+  createdAt: String!
+  updatedAt: String!
+  streamingPlans: [String!]
+  streamingDurations: [String!]
+  streamingPrices: [Float!]
+  streamingDevices: [String!]
+  socialFollowersPackages: [String!]
+  socialPrices: [Float!]
+  socialDeliveryTime: String
+  methodTypes: [String!]
+  methodPrices: [Float!]
+  methodInstructions: String
+}
+
+enum ServiceCategory {
+  STREAMING
+  SOCIAL_MEDIA
+  METHODS
+}
+
+type ServicesResponse {
+  services: [Service!]!
+  total: Int!
+}
+
+type ServiceResponse {
+  success: Boolean!
+  message: String!
+  service: Service
+}
+
+input CreateServiceInput {
+  name: String!
+  description: String
+  category: ServiceCategory!
+  iconCode: Int
+  colorValue: Int
+  isActive: Boolean
+  isFeatured: Boolean
+  streamingPlans: [String!]
+  streamingDurations: [String!]
+  streamingPrices: [Float!]
+  streamingDevices: [String!]
+  socialFollowersPackages: [String!]
+  socialPrices: [Float!]
+  socialDeliveryTime: String
+  methodTypes: [String!]
+  methodPrices: [Float!]
+  methodInstructions: String
+}
+
+input UpdateServiceInput {
+  name: String
+  description: String
+  isActive: Boolean
+  isFeatured: Boolean
+}
+
+# Orders Schema
+type Order {
+  id: ID!
+  orderId: String!
+  userId: String!
+  userEmail: String!
+  userName: String!
+  productId: String!
+  productName: String!
+  category: ServiceCategory!
+  amount: Float!
+  status: OrderStatus!
+  createdAt: String!
+  updatedAt: String!
+  completedAt: String
+  streamingPlan: String
+  streamingDuration: String
+  streamingEmail: String
+  streamingPassword: String
+  streamingPin: String
+  streamingProfileName: String
+  socialUsername: String
+  socialFollowersCount: Int
+  socialDeliveryStatus: String
+  methodType: String
+  methodEmail: String
+  methodPassword: String
+  methodAdditionalData: String
+  paymentMethod: String
+  transactionId: String
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
+
+type OrdersResponse {
+  orders: [Order!]!
+  total: Int!
+}
+
+type OrderResponse {
+  success: Boolean!
+  message: String!
+  order: Order
+}
+
+input CreateOrderInput {
+  productId: String!
+  category: ServiceCategory!
+  amount: Float!
+  paymentMethod: String!
+  streamingPlan: String
+  streamingDuration: String
+  streamingEmail: String
+  streamingPassword: String
+  streamingPin: String
+  streamingProfileName: String
+  socialUsername: String
+  socialFollowersCount: Int
+  methodType: String
+  methodEmail: String
+  methodPassword: String
+  methodAdditionalData: String
+}
+
+input UpdateOrderInput {
+  status: OrderStatus
+  streamingEmail: String
+  streamingPassword: String
+  streamingPin: String
+  streamingProfileName: String
+  socialDeliveryStatus: String
+  methodAdditionalData: String
+  transactionId: String
+}
+
+# Admin Dashboard Stats
+type DashboardStats {
+  totalUsers: Int!
+  activeUsers: Int!
+  totalServices: Int!
+  activeServices: Int!
+  totalOrders: Int!
+  completedOrders: Int!
+  pendingOrders: Int!
+  canceledOrders: Int!
+  totalRevenue: Float!
+  totalPurchases: Int!
+  avgPurchasesPerUser: Float!
+  avgSpentPerUser: Float!
+  topServices: [TopServiceStat!]!
+  topUsers: [TopUserStat!]!
+  recentRevenue: [DailyRevenue!]!
+}
+
+type TopServiceStat {
+  productId: String!
+  purchaseCount: Int!
+  revenue: Float!
+}
+
+type TopUserStat {
+  id: ID!
+  displayName: String
+  email: String!
+  totalPurchases: Int!
+  totalSpent: Float!
+}
+
+type DailyRevenue {
+  date: String!
+  revenue: Float!
+  orders: Int!
+}
+
+input UpdateUserAdminInput {
+  displayName: String
+  phoneNumber: String
+  photoUrl: String
+  role: UserRole
+  isActive: Boolean
+  totalPurchases: Int
+  totalSpent: Float
+}
+

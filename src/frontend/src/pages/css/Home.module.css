@@ -1,0 +1,48 @@
+.homeContainer {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-medium);
+    text-align: center;
+    padding: 2rem;
+}
+
+.heroContent {
+    max-width: 700px;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin: 1rem 0 2rem;
+    color: var(--text-secondary);
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--bg-medium);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "301754029580",
+    "project_id": "earth-vibe-f4c0b",
+    "storage_bucket": "earth-vibe-f4c0b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:301754029580:android:f866b38a4462bd7e428029",
+        "android_client_info": {
+          "package_name": "com.upla.earthvibe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3cTjRAuY8cm0RilCFNnAqHm097NvxLSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

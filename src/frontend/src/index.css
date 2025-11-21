@@ -1,0 +1,12 @@
+:root {
+  --primary-bg: #1b1f2a;
+  --secondary-bg: #242a36;
+  --accent: #3a4353;
+  --text-light: #e0e3e9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}

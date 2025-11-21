@@ -1,0 +1,220 @@
+.spotifyPage {
+    background: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+.navbar {
+    background: #282828;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #1DB954;
+}
+
+.navLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+.navButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+    border-radius: 20px;
+}
+
+.navButton:hover {
+    background: rgba(29, 185, 84, 0.1);
+    color: #1DB954;
+}
+
+.navButton.active {
+    background: #1DB954;
+    color: white;
+}
+
+.mainContent {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.searchSection,
+.downloadSection {
+    background: #282828;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.searchInput {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 20px;
+    background: #121212;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.searchInput:focus {
+    background: #333333;
+    outline: none;
+    box-shadow: 0 0 0 2px #1DB954;
+}
+
+.searchButton,
+.downloadButton {
+    padding: 0.75rem 1.5rem;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    min-width: 120px;
+    background: #1DB954;
+}
+
+.searchButton:hover:not(:disabled),
+.downloadButton:hover:not(:disabled) {
+    background: #1ed760;
+    transform: scale(1.05);
+}
+
+.searchButton:disabled,
+.downloadButton:disabled {
+    background: #333333;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.errorMessage {
+    color: #ff4444;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.resultsGrid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin-top: 2rem;
+}
+
+.trackCard {
+    background: #282828;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s;
+    padding: 1rem;
+}
+
+.trackCard:hover {
+    background: #333333;
+    transform: translateY(-4px);
+}
+
+.albumArt {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    margin-bottom: 1rem;
+}
+
+.albumArt img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.duration {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+.trackInfo {
+    padding: 0.5rem 0;
+}
+
+.trackTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.artistName {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.trackStats {
+    display: flex;
+    justify-content: space-between;
+    color: #b3b3b3;
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+}
+
+.downloadOptions {
+    margin-top: 1rem;
+}
+
+.progressBar {
+    width: 100%;
+    height: 4px;
+    background: #333333;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: #1DB954;
+    transition: width 0.3s ease;
+}
+
+.downloadButton.downloading {
+    background: #333333;
+    position: relative;
+    overflow: hidden;
+}
+
+.downloadButton.downloading::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #1DB954;
+    transition: width 0.3s ease;
+}
