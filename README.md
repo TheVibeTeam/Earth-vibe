@@ -31,60 +31,10 @@ El proyecto utiliza un stack moderno y escalable:
 *   **Hardware (IoT):** Integración conceptual con Raspberry Pi y lectores de código de barras.
 *   **Cloud:** Google Cloud (Cloud Run para servicios), Secret Manager, Artifact Registry / Container Registry, Cloud Build
   
-
 ---
 
 ## Cómo Ejecutar el Proyecto
 
-### Instalación Rápida
-El proyecto es modular. Para iniciar el servidor principal (Backend):
-
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone <url-del-repo>
-    cd Earth-Vibe
-    ```
-
-2.  **Iniciar Backend:**
-    ```bash
-    cd src/backend
-    npm install
-    npm run dev
-    ```
-
-3.  **Iniciar Frontend:**
-    ```bash
-    cd ../frontend
-    npm install
-    npm run dev
-    ```
-
-> **Nota:** Para detalles sobre la configuración de variables de entorno (`.env`) y la ejecución de la app móvil, revisa el **[Manual de Instalación](docs/MANUAL_INSTALACION.md)**.
-
-2.  **Backend:**
-    ```bash
-    cd src/backend
-    npm install
-    npm start
-    ```
-
-3.  **Frontend (Web):**
-    ```bash
-    cd src/frontend
-    npm install
-    npm run dev
-    ```
-
-4.  **Móvil (App):**
-    ```bash
-    cd mobile
-    flutter pub get
-    flutter run
-    ```
-
-> Para instrucciones detalladas, consultar el [Manual de Instalación](docs/MANUAL_INSTALACION.md).
-
----
 
 ## Capturas de Pantalla
 *(Espacio reservado para capturas de pantalla del prototipo funcionando)*
