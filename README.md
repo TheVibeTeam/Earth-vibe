@@ -1,8 +1,15 @@
 # Earth Vibe - Sistema Social de Reciclaje Inteligente
 
-### Equipo del Proyecto
-1.  **Villogas Gaspar, Alessandro**
-2.  **Cerron Villar, Maricielo Sarai**
+## 👥 Equipo de Desarrollo
+
+Este proyecto ha sido posible gracias al trabajo colaborativo de:
+
+| Integrante | Rol Principal | GitHub |
+| :--- | :--- | :--- |
+| **Villogas Gaspar, Alessandro** | *Project Lead & Backend* | [@AlessandroVG](https://github.com/AlessandroVG) |
+| **Cerron Villar, Maricielo Sarai** | *Lead Developer (Mobile & Frontend)* | [@MaricieloCV](https://github.com/MaricieloCV) |
+
+> *Nota: Los roles son referenciales según la contribución al repositorio.*
 
 ---
 

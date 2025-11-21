@@ -1,0 +1,40 @@
+name: Backend CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/backend/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'src/backend/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/backend
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: src/backend/package-lock.json
+
+    - name: Install Dependencies
+      run: npm install
+
+    # Generar archivos necesarios antes del build (Proto y GraphQL)
+    - name: Generate Code (Proto & GraphQL)
+      run: |
+        npm run gen:proto
+        npm run gen:graphql
+
+    - name: Build Project
+      run: npm run build
