@@ -1,33 +1,23 @@
 # Earth Vibe - Sistema Social de Reciclaje Inteligente
 
-## 👥 Equipo de Desarrollo
+## Equipo: The Vibe Team
 
 Este proyecto ha sido posible gracias al trabajo colaborativo de:
 
 | Integrante | Rol Principal | GitHub |
 | :--- | :--- | :--- |
-| **Villogas Gaspar, Alessandro** | *Project Lead & Backend* | [@AlessandroVG](https://github.com/AlessandroVG) |
-| **Cerron Villar, Maricielo Sarai** | *Lead Developer (Mobile & Frontend)* | [@MaricieloCV](https://github.com/MaricieloCV) |
-
-> *Nota: Los roles son referenciales según la contribución al repositorio.*
-
+| **Villogas Gaspar, Alessandro** | *Líder técnico y desarrollador full-stack* | [@AlessandroVG](https://github.com/AlessandroVG) |
+| **Cerron Villar, Maricielo Sarai** | *Líder de gestión, investigación y experiencia del usuario* | [@MaricieloCV](https://github.com/MaricieloCV) |
+Fecha: 21/11/25
 ---
 
-## Problema Encontrado
-La contaminación por plásticos de un solo uso es un problema crítico en el campus universitario. A pesar de que la comunidad estudiantil conoce la importancia del reciclaje, existe una "brecha de intención-acción": la falta de incentivos atractivos y la inconveniencia de los sistemas actuales provocan bajas tasas de reciclaje y contaminación cruzada en los contenedores.
-
-**Afectados:** Comunidad universitaria, personal de limpieza y el medio ambiente local.
-**Importancia:** Resolver este problema mejora la imagen institucional, reduce la huella ecológica y promueve hábitos sostenibles mediante tecnología (Smart Campus).
+## Problema 
+La contaminación por plásticos de un solo uso es un problema crítico en el campus universitario. A pesar de que la comunidad estudiantil conoce la importancia del reciclaje, existe una "brecha de intención-acción": la falta de incentivos atractivos y la inconveniencia de los sistemas actuales provocan bajas tasas de reciclaje y contaminación cruzada en los contenedores. Afectando a la comunidad universitaria, personal de limpieza y el medio ambiente local.Esto no solo afecta la comodidad, sino también la percepción de bienestar y seguridad ambiental dentro de la universidad. Por ello es importante resolver este problema ya que mejora la imagen institucional, reduce la huella ecológica y promueve hábitos sostenibles mediante tecnología.
 
 ---
 
 ## Solución Propuesta
-**Earth Vibe** es un ecosistema socio-tecnológico que combina hardware IoT y una aplicación móvil gamificada para incentivar el reciclaje.
-
-**Diferenciadores:**
-*   **Vibe Pod (Hardware):** Quiosco inteligente que valida automáticamente las botellas mediante código de barras, evitando el fraude y la contaminación cruzada. Genera un código QR único por transacción.
-*   **App Earth Vibe (Software):** Aplicación donde el usuario escanea el QR del quiosco para ganar puntos, subir de nivel en el ranking y canjear recompensas.
-*   **Gamificación:** Transforma el acto de reciclar en una experiencia divertida y competitiva.
+Nuestra solución es Earth Vibe, un sistema socio-tecnológico que   combina   hardware,   software   y   comunidad   para transformar  el  reciclaje  en  una  experiencia  motivadora.  El dispositivo físico, llamado Vibe Pod, escanea el código de barras de cada botella, valida que sea PET y genera un QR con puntos según lo reciclado; mientras que la app Earth Vibe permite al estudiante  escanear  ese  QR  y  recibir  puntos,  subir  en  un ranking,  completar  misiones  y  compartir  logros  en  una  red social ambiental interna. Esto genera hábitos positivos basados en  gamificación  y  reconocimiento  social.  A  diferencia  de  un tacho tradicional, Earth Vibe valida el material desde el origen, evita la contaminación cruzada, entrega recompensas reales, crea  una  comunidad  activa  y  genera  datos  útiles  para  la universidad, lo que lo convierte en una solución mucho más efectiva que lo existente.
 
 ---
 
@@ -39,15 +29,8 @@ El proyecto utiliza un stack moderno y escalable:
 *   **Móvil:** Flutter (Dart) para Android e iOS.
 *   **Integraciones:** OpenFoodFacts API (Validación de productos), Firebase (Notificaciones), Socket.IO (Tiempo real).
 *   **Hardware (IoT):** Integración conceptual con Raspberry Pi y lectores de código de barras.
-
----
-
-## Documentación
-Para una guía detallada, consulta los manuales en la carpeta `docs/`:
-
-*   📘 **[Manual de Usuario](docs/MANUAL_USUARIO.md):** Guía paso a paso para usar la aplicación y reciclar.
-*   🛠️ **[Manual Técnico](docs/MANUAL_TECNICO.md):** Arquitectura, flujo de datos y explicación de componentes para desarrolladores.
-*   ⚙️ **[Manual de Instalación](docs/MANUAL_INSTALACION.md):** Instrucciones para desplegar el backend, frontend y app móvil.
+*   **Cloud:** Google Cloud (Cloud Run para servicios), Secret Manager, Artifact Registry / Container Registry, Cloud Build
+  
 
 ---
 
