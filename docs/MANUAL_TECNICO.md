@@ -10,7 +10,7 @@ Earth Vibe implementa una arquitectura moderna basada en microservicios y compon
 *   **Base de Datos:** Enfoque híbrido utilizando MongoDB (datos estructurados/usuarios) y SQLite (caché local/configuración ligera).
 *   **Servicios Externos:** Integración con OpenFoodFacts API para validación de productos y Firebase para notificaciones push.
 
-## 2. Tecnologías y Dependencias
+## 2. Tecnologías
 
 ### Backend (`src/backend`)
 *   **Lenguaje:** TypeScript / Node.js
@@ -35,6 +35,20 @@ Earth Vibe implementa una arquitectura moderna basada en microservicios y compon
 ### Mobile (`mobile`)
 *   **Framework:** Flutter (Dart).
 *   **Características:** Escaneo de QR/Códigos de barras, integración con servicios nativos.
+
+## 3.Dependencias 
+   El sistema Earth Vibe requiere las siguientes dependencias para su ejecución y compilación:
+* **Node.js v18+**: Entorno de ejecución para el backend.
+* **Express v5 (TypeScript):** Framework principal para las rutas de la API.
+* **MongoDB Atlas:** Base de datos no relacional utilizada en producción.
+* **Firebase Authentication y Cloud Messaging:** Para el inicio de sesión y notificaciones.
+* **Socket.IO v4:** Comunicación en tiempo real entre backend y frontend.
+* **Flutter SDK 3.19+:** Requerido para compilar y ejecutar la aplicación móvil.
+* **React 19 + Vite:** Framework y herramienta para el dashboard web.
+* **GSAP:** Librería de animaciones del frontend.
+* **Google Cloud Run:** Servicio donde se despliega el backend en producción.
+* **OpenFoodFacts API:** Servicio externo para validación de productos reciclados.
+* **ESP32 + lector 1D/2D:** Dependencias de hardware del Vibe Pod.
 
 ## 3. Flujo Interno de Datos
 
