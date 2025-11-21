@@ -25,28 +25,51 @@ La contaminación por plásticos de un solo uso es un problema crítico en el ca
 ---
 
 ## Tecnologías Utilizadas
-*   **Hardware (IoT):** Raspberry Pi 5, Lector de código de barras, Pantalla LCD.
-*   **Móvil:** Flutter (Android/iOS).
-*   **Frontend Web:** React + Vite (Landing Page).
-*   **Backend:** Node.js (API REST).
-*   **Base de Datos:** SQLite / Firebase.
-*   **Infraestructura:** Google Cloud Platform.
+El proyecto utiliza un stack moderno y escalable:
+
+*   **Backend:** Node.js con Express v5 (TypeScript). Arquitectura híbrida con MongoDB (Cloud) y SQLite (Local).
+*   **Frontend Web:** React v19 + Vite. Estilizado con CSS Modules y animaciones GSAP.
+*   **Móvil:** Flutter (Dart) para Android e iOS.
+*   **Integraciones:** OpenFoodFacts API (Validación de productos), Firebase (Notificaciones), Socket.IO (Tiempo real).
+*   **Hardware (IoT):** Integración conceptual con Raspberry Pi y lectores de código de barras.
 
 ---
 
-## Cómo Ejecutar el Prototipo
+## Documentación
+Para una guía detallada, consulta los manuales en la carpeta `docs/`:
 
-### Requisitos Previos
-*   Node.js (v18+)
-*   Flutter SDK
-*   Git
+*   📘 **[Manual de Usuario](docs/MANUAL_USUARIO.md):** Guía paso a paso para usar la aplicación y reciclar.
+*   🛠️ **[Manual Técnico](docs/MANUAL_TECNICO.md):** Arquitectura, flujo de datos y explicación de componentes para desarrolladores.
+*   ⚙️ **[Manual de Instalación](docs/MANUAL_INSTALACION.md):** Instrucciones para desplegar el backend, frontend y app móvil.
+
+---
+
+## Cómo Ejecutar el Proyecto
 
 ### Instalación Rápida
+El proyecto es modular. Para iniciar el servidor principal (Backend):
+
 1.  **Clonar el repositorio:**
     ```bash
     git clone <url-del-repo>
-    cd webserver
+    cd Earth-Vibe
     ```
+
+2.  **Iniciar Backend:**
+    ```bash
+    cd src/backend
+    npm install
+    npm run dev
+    ```
+
+3.  **Iniciar Frontend:**
+    ```bash
+    cd ../frontend
+    npm install
+    npm run dev
+    ```
+
+> **Nota:** Para detalles sobre la configuración de variables de entorno (`.env`) y la ejecución de la app móvil, revisa el **[Manual de Instalación](docs/MANUAL_INSTALACION.md)**.
 
 2.  **Backend:**
     ```bash

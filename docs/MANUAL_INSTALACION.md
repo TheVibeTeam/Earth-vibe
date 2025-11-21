@@ -1,53 +1,105 @@
 # Manual de Instalación y Ejecución - Earth Vibe
 
-Este documento detalla los pasos técnicos para levantar el entorno de desarrollo del proyecto Earth Vibe.
+Esta guía detalla los pasos necesarios para desplegar el entorno de desarrollo completo de Earth Vibe (Backend, Frontend y Mobile).
 
-## 1. Requisitos del Sistema
-*   **Sistema Operativo:** Windows 10/11, macOS o Linux.
-*   **Node.js:** Versión 18 o superior.
-*   **Flutter SDK:** Última versión estable.
-*   **Editor de Código:** VS Code (recomendado).
+## 1. Requisitos Previos
+Antes de comenzar, asegúrate de tener instalado lo siguiente:
+*   **Node.js:** v18 o superior (Recomendado v20 LTS).
+*   **npm:** Gestor de paquetes de Node.
+*   **Git:** Para clonar el repositorio.
+*   **Flutter SDK:** (Opcional, solo si vas a ejecutar la app móvil).
+*   **Base de Datos:**
+    *   Acceso a una instancia de **MongoDB** (local o Atlas).
+    *   (Opcional) SQLite se maneja localmente mediante archivos.
 
 ## 2. Estructura del Proyecto
-El proyecto está organizado en la carpeta `src/` con los siguientes submódulos:
-*   `backend/`: Servidor API y lógica de negocio.
-*   `frontend/`: Landing page y panel web.
-*   `mobile/`: Aplicación móvil en Flutter.
+El repositorio contiene las siguientes carpetas principales:
+*   `src/backend`: Servidor API (Express/TypeScript).
+*   `src/frontend`: Aplicación Web (React/Vite).
+*   `mobile`: Aplicación Móvil (Flutter).
 
-## 3. Instalación y Ejecución por Módulo
+---
 
-### A. Backend (Node.js)
-El backend gestiona la validación de usuarios y transacciones.
+## 3. Instalación y Ejecución
 
-1.  Navegar a la carpeta:
+### A. Backend (Servidor API)
+El backend es el núcleo del sistema. Debe estar corriendo para que el frontend y la app móvil funcionen correctamente.
+
+1.  **Navegar al directorio:**
     ```bash
     cd src/backend
     ```
-2.  Instalar dependencias:
+2.  **Instalar dependencias:**
     ```bash
     npm install
     ```
-3.  Configurar variables de entorno:
-    *   Crear un archivo `.env` basado en el ejemplo (si existe) o configurar puerto y base de datos.
-4.  Ejecutar el servidor:
+3.  **Configuración de Entorno:**
+    *   Crea un archivo `.env` en la raíz de `src/backend`.
+    *   Define las variables necesarias (ejemplo):
+        ```env
+        PORT=3000
+        MONGODB_URI=mongodb://localhost:27017/earthvibe
+        JWT_SECRET=tu_secreto_super_seguro
+        FRONTEND_URL=http://localhost:5173
+        ```
+4.  **Ejecutar en modo desarrollo:**
     ```bash
-    npm start
-    # O para desarrollo:
     npm run dev
     ```
-    *El servidor correrá generalmente en `http://localhost:3000`.*
+    *   El servidor iniciará en `http://localhost:3000`.
+    *   Verás logs indicando la conexión a la base de datos y el inicio de servicios.
 
-### B. Frontend Web (React + Vite)
-Sitio web informativo del proyecto.
+### B. Frontend (Web App)
+Interfaz web para usuarios y administradores.
 
-1.  Navegar a la carpeta:
+1.  **Navegar al directorio:**
     ```bash
     cd src/frontend
     ```
-2.  Instalar dependencias:
+2.  **Instalar dependencias:**
     ```bash
     npm install
     ```
+3.  **Ejecutar en modo desarrollo:**
+    ```bash
+    npm run dev
+    ```
+    *   La aplicación web estará disponible en `http://localhost:5173` (por defecto).
+
+### C. Mobile (App Flutter)
+Aplicación para dispositivos móviles.
+
+1.  **Navegar al directorio:**
+    ```bash
+    cd mobile
+    ```
+2.  **Obtener dependencias:**
+    ```bash
+    flutter pub get
+    ```
+3.  **Ejecutar la aplicación:**
+    *   Conecta un dispositivo físico o inicia un emulador.
+    *   Ejecuta:
+        ```bash
+        flutter run
+        ```
+
+---
+
+## 4. Comandos Útiles
+
+| Módulo | Comando | Descripción |
+| :--- | :--- | :--- |
+| **Backend** | `npm run build` | Compila el código TypeScript a JavaScript (carpeta `dist`). |
+| **Backend** | `npm start` | Ejecuta el servidor compilado (producción). |
+| **Backend** | `npm run gen:proto` | Genera archivos JS/TS a partir de definiciones Protobuf. |
+| **Frontend** | `npm run build` | Genera la versión de producción de la web. |
+| **Frontend** | `npm run preview` | Vista previa local de la build de producción. |
+
+## 5. Solución de Problemas
+*   **Error de conexión a BD:** Verifica que tu URI de MongoDB en el `.env` sea correcta y que el servicio de base de datos esté activo.
+*   **Puerto ocupado:** Si el puerto 3000 o 5173 está en uso, cambia el puerto en el `.env` o en la configuración de Vite (`vite.config.ts`).
+
 3.  Ejecutar en modo desarrollo:
     ```bash
     npm run dev

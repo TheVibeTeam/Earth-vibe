@@ -1,52 +1,72 @@
 # Manual Técnico - Earth Vibe
 
 ## 1. Arquitectura del Sistema
-Earth Vibe utiliza una arquitectura cliente-servidor con componentes IoT integrados.
+Earth Vibe implementa una arquitectura moderna basada en microservicios y componentes modulares, diseñada para escalabilidad y mantenimiento eficiente.
 
-### Diagrama Conceptual
-`[Vibe Pod (IoT)]` <--> `[Backend API]` <--> `[App Móvil]`
+### Diagrama de Arquitectura
+*   **Frontend (Cliente Web):** SPA construida con React y Vite.
+*   **Mobile (Cliente Móvil):** Aplicación multiplataforma (Android/iOS) desarrollada en Flutter.
+*   **Backend (API Server):** Servidor Node.js con Express, sirviendo como núcleo lógico.
+*   **Base de Datos:** Enfoque híbrido utilizando MongoDB (datos estructurados/usuarios) y SQLite (caché local/configuración ligera).
+*   **Servicios Externos:** Integración con OpenFoodFacts API para validación de productos y Firebase para notificaciones push.
 
-1.  **Vibe Pod:** Valida físicamente el residuo y solicita la generación de un token (QR) al backend.
-2.  **Backend:** Genera tokens únicos, gestiona usuarios y almacena transacciones en la base de datos.
-3.  **App Móvil:** Consume el token (QR) y actualiza el saldo del usuario a través de la API.
+## 2. Tecnologías y Dependencias
 
-## 2. Stack Tecnológico
+### Backend (`src/backend`)
+*   **Lenguaje:** TypeScript / Node.js
+*   **Framework Web:** Express v5
+*   **Base de Datos:**
+    *   `mongoose`: ODM para MongoDB.
+    *   `better-sqlite3`: Driver rápido para SQLite.
+*   **Comunicación:**
+    *   `socket.io`: Comunicación en tiempo real (notificaciones, actualizaciones de estado).
+    *   `graphql`: Consultas flexibles de datos.
+    *   `protobufjs`: Definición de esquemas de datos eficientes (gRPC ready).
+*   **Seguridad:** `helmet`, `cors`, `bcryptjs`, `jsonwebtoken` (JWT).
+*   **Utilidades:** `axios` (peticiones HTTP), `firebase-admin` (Push Notifications).
 
-### Backend
-*   **Runtime:** Node.js
-*   **Framework:** Express (o similar según implementación).
-*   **Base de Datos:** SQLite (para prototipo) / Firebase (escalabilidad).
-*   **Autenticación:** JWT / Firebase Auth.
-
-### Frontend (Web)
-*   **Framework:** React
+### Frontend (`src/frontend`)
+*   **Framework:** React v19
 *   **Build Tool:** Vite
-*   **Estilos:** CSS Modules / Tailwind CSS.
-*   **Propósito:** Landing page informativa y dashboard de métricas públicas.
+*   **Estilos:** CSS Modules, `gsap` y `framer-motion` para animaciones avanzadas.
+*   **Comunicación:** `socket.io-client`, `axios`.
+*   **Routing:** `react-router-dom`.
 
-### Móvil
+### Mobile (`mobile`)
 *   **Framework:** Flutter (Dart).
-*   **Plataformas:** Android / iOS.
-*   **Librerías Clave:**
-    *   `qr_code_scanner`: Para leer los QRs del Vibe Pod.
-    *   `http` / `dio`: Para comunicación con el Backend.
-    *   `provider` / `flutter_bloc`: Gestión de estado.
+*   **Características:** Escaneo de QR/Códigos de barras, integración con servicios nativos.
 
-### Hardware (Vibe Pod)
-*   **Controlador:** Raspberry Pi 5.
-*   **Periféricos:**
-    *   Lector de código de barras (USB/Serial).
-    *   Pantalla LCD (Interfaz de usuario local).
-*   **Software:** Script en Python/Node.js para interfaz con hardware y comunicación API.
+## 3. Flujo Interno de Datos
 
-## 3. Flujo de Datos (Caso de Uso: Reciclaje)
-1.  **Input:** Usuario escanea botella en Vibe Pod.
-2.  **Proceso Local:** Vibe Pod verifica código de barras en BD local de productos válidos.
-3.  **API Request:** Vibe Pod envía `POST /api/transaction/generate` al Backend.
-4.  **API Response:** Backend devuelve un `transaction_id` encriptado.
-5.  **Output:** Vibe Pod muestra QR con el `transaction_id`.
-6.  **User Action:** Usuario escanea QR con App.
-7.  **API Request:** App envía `POST /api/transaction/claim` con `transaction_id` y `user_id`.
-8.  **Validation:** Backend verifica que el `transaction_id` no haya sido usado.
+1.  **Interacción del Usuario:** El usuario realiza una acción (ej. escanear producto) en el Frontend o Mobile.
+2.  **Petición API:** Se envía una solicitud HTTP (REST) o evento Socket al Backend.
+    *   *Ruta Ejemplo:* `POST /openfoodfacts/label` para verificar un producto.
+3.  **Procesamiento (Backend):**
+    *   El middleware `auth.ts` verifica el token JWT.
+    *   El controlador consulta la API de OpenFoodFacts o la base de datos local.
+    *   Se actualizan los modelos (`User`, `Product`, `Challenge`).
+4.  **Persistencia:** Los datos se guardan en MongoDB (nube) o SQLite (local).
+5.  **Respuesta:** El servidor responde al cliente con el resultado (JSON) y emite eventos Socket si es necesario (ej. notificar logro desbloqueado).
+
+## 4. Estructura de APIs y Componentes
+
+### Rutas Principales (`src/backend/src/Routes`)
+*   `/admin`: Endpoints para gestión administrativa.
+*   `/earthvibe`: Lógica core del negocio (retos, puntos).
+*   `/nazishop`: Gestión de la tienda de recompensas y canjes.
+*   `/openfoodfacts`: Proxy/Integración para búsqueda de información nutricional y de reciclaje.
+*   `/utils`: Utilidades generales (subida de archivos, health checks).
+
+### Modelos de Datos (`src/backend/src/Models`)
+*   **User:** Información de perfil, credenciales y saldo de puntos.
+*   **Product:** Catálogo de productos reciclables y su valor en puntos.
+*   **Challenge:** Retos disponibles para los usuarios.
+*   **Reward:** Premios disponibles en la tienda.
+*   **Notification:** Historial de alertas enviadas.
+
+### Componentes Clave
+*   **Socket Server (`src/backend/src/Socket`):** Maneja conexiones en tiempo real para `notifications`, `ping`, y `posts`.
+*   **Hybrid Config (`src/backend/src/Config`):** Gestores de conexión para MongoDB y SQLite.
+
 9.  **Update:** Backend suma puntos al usuario y marca transacción como completada.
 10. **Feedback:** App muestra confirmación de puntos ganados.
