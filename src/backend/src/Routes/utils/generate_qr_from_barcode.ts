@@ -10,17 +10,14 @@ export default {
     category: 'utils',
     example: { 
         url: '/utils/qr/generate-from-barcode/7501055363322,7750670244954',
-        body: {
-            secretKey: 'your-secret-key-here'
-        }
+        body: {}
     },
-    parameter: ['barcodes', 'secretKey'],
+    parameter: ['barcodes'],
     premium: false,
     error: false,
     logger: true,
     requires: (req: Request, res: Response, next: Function) => {
         const { barcodes } = req.params;
-        const { secretKey } = req.body;
         
         if (!barcodes || typeof barcodes !== 'string' || barcodes.trim() === '') {
             return res.status(400).json({ 
@@ -29,19 +26,11 @@ export default {
             });
         }
         
-        if (!secretKey || typeof secretKey !== 'string') {
-            return res.status(400).json({
-                status: false,
-                msg: 'secretKey es requerido en el body y debe ser string'
-            });
-        }
-        
         next();
     },
     execution: async (req: Request, res: Response) => {
         try {
             const { barcodes: barcodesParam } = req.params;
-            const { secretKey } = req.body;
             
             // Convertir el string de barcodes separados por comas en array
             const barcodes = barcodesParam.split(',').map(b => b.trim()).filter(b => b.length > 0);
@@ -185,7 +174,8 @@ export default {
             const json = JSON.stringify(data);
 
             const crypto = require('crypto');
-            let keyStr = secretKey;
+            // Usar variable de entorno o clave por defecto
+            let keyStr = process.env.QR_SECRET_KEY || 'earth-vibe-default-secret-key-2025';
             if (keyStr.length < 32) {
                 keyStr = keyStr.padEnd(32, '0');
             } else if (keyStr.length > 32) {

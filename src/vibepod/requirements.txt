@@ -1,0 +1,5 @@
+requests==2.31.0
+python-dotenv==1.0.0
+qrcode[pil]==7.4.2
+Pillow==10.2.0
+# RPi.GPIO==0.7.1  # Descomentar si necesitas control de pines GPIO (LEDs, motores)
