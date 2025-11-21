@@ -1,11 +1,5 @@
 # Earth Vibe - Sistema Social de Reciclaje Inteligente
 
-## Información General
-*   **Proyecto:** Earth Vibe
-*   **Institución:** Universidad Peruana Los Andes (UPLA) - E.P. Ingeniería en Sistemas y Computación
-*   **Curso:** Medio Ambiente y Desarrollo Sostenible
-*   **Fecha:** Noviembre 2025
-
 ### Equipo del Proyecto
 1.  **Villogas Gaspar, Alessandro**
 2.  **Cerron Villar, Maricielo Sarai**
