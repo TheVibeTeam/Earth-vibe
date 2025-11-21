@@ -50,7 +50,7 @@ Earth Vibe implementa una arquitectura moderna basada en microservicios y compon
 * **OpenFoodFacts API:** Servicio externo para validación de productos reciclados.
 * **ESP32 + lector 1D/2D:** Dependencias de hardware del Vibe Pod.
 
-## 3. Flujo Interno de Datos
+## 4. Flujo Interno de Datos
 
 1.  **Interacción del Usuario:** El usuario realiza una acción (ej. escanear producto) en el Frontend o Mobile.
 2.  **Petición API:** Se envía una solicitud HTTP (REST) o evento Socket al Backend.
@@ -62,7 +62,7 @@ Earth Vibe implementa una arquitectura moderna basada en microservicios y compon
 4.  **Persistencia:** Los datos se guardan en MongoDB (nube) o SQLite (local).
 5.  **Respuesta:** El servidor responde al cliente con el resultado (JSON) y emite eventos Socket si es necesario (ej. notificar logro desbloqueado).
 
-## 4. Estructura de APIs y Componentes
+## 5. Estructura de APIs y Componentes
 
 ### Rutas Principales (`src/backend/src/Routes`)
 *   `/admin`: Endpoints para gestión administrativa.
