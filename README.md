@@ -4,11 +4,6 @@
 
 Este proyecto ha sido posible gracias al trabajo colaborativo de:
 
-| Integrante | Rol Principal | GitHub |
-| :--- | :--- | :--- |
-| **Villogas Gaspar, Alessandro** | *Líder técnico y desarrollador full-stack* | [@AlessandroVG](https://github.com/AlessandroVG) |
-| **Cerron Villar, Maricielo Sarai** | *Líder de gestión, investigación y experiencia del usuario* | [@MaricieloCV](https://github.com/MaricieloCV) |
-Fecha: 21/11/25
 ---
 
 ## Problema 
