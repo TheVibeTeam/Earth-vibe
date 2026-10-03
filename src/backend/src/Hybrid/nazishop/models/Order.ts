@@ -9,6 +9,9 @@ export interface IOrder extends Document {
     productName: string;
     category: 'STREAMING' | 'SOCIAL_MEDIA' | 'METHODS';
     amount: number;
+    currency?: string;
+    amountUSD?: number;
+    exchangeRate?: number;
     status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'CANCELLED' | 'REFUNDED';
     createdAt: Date;
     updatedAt: Date;
@@ -39,6 +42,9 @@ const OrderSchema = new Schema<IOrder>({
     productName: { type: String, required: true },
     category: { type: String, enum: ['STREAMING', 'SOCIAL_MEDIA', 'METHODS'], required: true },
     amount: { type: Number, required: true },
+    currency: { type: String, enum: ['USD', 'MXN', 'COP'], default: 'USD' },
+    amountUSD: { type: Number },
+    exchangeRate: { type: Number },
     status: { type: String, enum: ['PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED', 'REFUNDED'], default: 'PENDING' },
     completedAt: Date,
     streamingPlan: String,

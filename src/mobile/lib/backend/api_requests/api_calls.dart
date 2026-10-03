@@ -76,7 +76,7 @@ class PostData {
 }
 
 class ApiConfig {
-  static const String baseUrl = 'https://api.ktxo.xyz';
+  static const String baseUrl = 'https://api.auralixpe.xyz';
   static const String apiUrl = '$baseUrl/earthvibe/authentication';
 
   static Map<String, String> get headers => {

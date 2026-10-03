@@ -16,12 +16,38 @@ export default {
             const { email, password } = input;
             logger.info({ email }, 'User login attempt');
             if (!email || !password) throw new Error('Email y contraseña son requeridos');
+            
             const user = await NaziShopUserModel.findOne({ email: email.toLowerCase() });
-            if (!user) throw new Error('Usuario o contraseña incorrectos');
-            if (!user.isActive) throw new Error('Usuario desactivado');
-            if (!user.password) throw new Error('Usuario registrado con método externo');
+            
+            if (!user) {
+                logger.warn({ email }, 'Login failed: User not found');
+                throw new Error('Usuario o contraseña incorrectos');
+            }
+            
+            if (!user.isActive) {
+                logger.warn({ email }, 'Login failed: User inactive');
+                throw new Error('Usuario desactivado');
+            }
+            
+            if (!user.password) {
+                logger.warn({ email }, 'Login failed: No password (external auth)');
+                throw new Error('Usuario registrado con método externo');
+            }
+
             const validPassword = await bcrypt.compare(password, user.password);
-            if (!validPassword) throw new Error('Usuario o contraseña incorrectos');
+            
+            logger.info({
+                userId: user._id,
+                passwordProvided: password.substring(0, 2) + '...',
+                storedHash: user.password.substring(0, 10) + '...',
+                isMatch: validPassword
+            }, 'Password comparison result');
+
+            if (!validPassword) {
+                logger.warn({ email }, 'Login failed: Invalid password');
+                throw new Error('Usuario o contraseña incorrectos');
+            }
+
             await NaziShopUserModel.updateOne({ _id: user._id }, { lastActiveTime: new Date() });
             const token = jwt.sign(
                 { 

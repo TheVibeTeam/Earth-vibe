@@ -23,13 +23,23 @@ export default {
             if (role) filter.role = role;
             if (isActive !== undefined) filter.isActive = isActive;
 
-            const users = await NaziShopUserModel.find(filter)
+            const usersFromDB = await NaziShopUserModel.find(filter)
                 .select('-password')
                 .limit(limit)
                 .skip(skip)
                 .sort({ createdAt: -1 });
 
             const total = await NaziShopUserModel.countDocuments(filter);
+
+            const users = usersFromDB.map(user => {
+                const userObject = user.toObject();
+                return {
+                    ...userObject,
+                    id: (userObject._id as any).toString(),
+                    createdAt: userObject.createdAt?.toISOString(),
+                    updatedAt: userObject.updatedAt?.toISOString(),
+                };
+            });
 
             return { users, total };
         } catch (error: any) {

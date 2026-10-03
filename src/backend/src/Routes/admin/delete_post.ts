@@ -28,7 +28,7 @@ export default {
             }
 
             // Eliminar el post del array
-            user.posts = user.posts?.filter(post => (post as any)._id?.toString() !== postId) || [];
+            user.posts.pull({ _id: postId });
             await user.save();
 
             res.json({

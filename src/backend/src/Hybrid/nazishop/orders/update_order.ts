@@ -20,22 +20,32 @@ export default {
             if (input.status === 'COMPLETED' && !updateData.completedAt) {
                 updateData.completedAt = new Date();
             }
-            const updatedOrder = await OrderModel.findOneAndUpdate(
+            const updatedOrderFromDB = await OrderModel.findOneAndUpdate(
                 { orderId },
                 { $set: updateData },
                 { new: true, runValidators: true }
             );
-            if (!updatedOrder) throw new Error('Orden no encontrada');
+            if (!updatedOrderFromDB) throw new Error('Orden no encontrada');
             if (input.status === 'COMPLETED') {
                 await NaziShopUserModel.findOneAndUpdate(
-                    { email: updatedOrder.userEmail },
-                    { $inc: { totalSpent: updatedOrder.amount } }
+                    { email: updatedOrderFromDB.userEmail },
+                    { $inc: { totalSpent: updatedOrderFromDB.amount } }
                 );
             }
+
+            const updatedOrderObject = updatedOrderFromDB.toObject();
+            const order = {
+                ...updatedOrderObject,
+                id: (updatedOrderObject._id as any).toString(),
+                createdAt: updatedOrderObject.createdAt?.toISOString(),
+                updatedAt: updatedOrderObject.updatedAt?.toISOString(),
+                completedAt: updatedOrderObject.completedAt?.toISOString(),
+            };
+
             return {
                 success: true,
                 message: 'Orden actualizada exitosamente',
-                order: updatedOrder
+                order
             };
         } catch (error: any) {
             logger.error({ error: error.message }, 'Error updating order');

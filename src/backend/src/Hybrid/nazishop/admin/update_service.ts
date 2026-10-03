@@ -19,19 +19,35 @@ export default {
             const { serviceId, input } = args;
             logger.info({ serviceId }, 'Admin updating service');
 
-            const service = await ServiceModel.findOne({ serviceId });
+            let service = await ServiceModel.findOne({ serviceId });
+            
+            // Fallback: try finding by _id if not found by serviceId
+            if (!service && serviceId.match(/^[0-9a-fA-F]{24}$/)) {
+                service = await ServiceModel.findById(serviceId);
+            }
+
             if (!service) throw new Error('Servicio no encontrado');
 
-            const updatedService = await ServiceModel.findOneAndUpdate(
-                { serviceId },
+            // Use the found service's _id for the update to be safe
+            const updatedService = await ServiceModel.findByIdAndUpdate(
+                service._id,
                 { $set: input },
                 { new: true, runValidators: true }
             );
 
+            if (!updatedService) throw new Error('No se pudo actualizar el servicio');
+
+            const serviceObject = updatedService.toObject();
+
             return {
                 success: true,
                 message: 'Servicio actualizado exitosamente',
-                service: updatedService
+                service: {
+                    ...serviceObject,
+                    id: (serviceObject._id as any).toString(),
+                    createdAt: serviceObject.createdAt?.toISOString(),
+                    updatedAt: serviceObject.updatedAt?.toISOString(),
+                }
             };
         } catch (error: any) {
             logger.error({ error: error.message }, 'Error updating service');

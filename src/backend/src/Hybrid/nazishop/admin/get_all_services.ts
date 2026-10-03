@@ -24,12 +24,22 @@ export default {
             if (isActive !== undefined) filter.isActive = isActive;
             if (isFeatured !== undefined) filter.isFeatured = isFeatured;
 
-            const services = await ServiceModel.find(filter)
+            const servicesFromDB = await ServiceModel.find(filter)
                 .limit(limit)
                 .skip(skip)
                 .sort({ createdAt: -1 });
 
             const total = await ServiceModel.countDocuments(filter);
+
+            const services = servicesFromDB.map(service => {
+                const serviceObject = service.toObject();
+                return {
+                    ...serviceObject,
+                    id: (serviceObject._id as any).toString(),
+                    createdAt: serviceObject.createdAt?.toISOString(),
+                    updatedAt: serviceObject.updatedAt?.toISOString(),
+                };
+            });
 
             return { services, total };
         } catch (error: any) {

@@ -19,8 +19,16 @@ export default {
             const { serviceId } = args;
             logger.info({ serviceId }, 'Admin deleting service');
 
-            const service = await ServiceModel.findOneAndDelete({ serviceId });
+            let service = await ServiceModel.findOne({ serviceId });
+
+            // Fallback: try finding by _id if not found by serviceId
+            if (!service && serviceId.match(/^[0-9a-fA-F]{24}$/)) {
+                service = await ServiceModel.findById(serviceId);
+            }
+
             if (!service) throw new Error('Servicio no encontrado');
+
+            await ServiceModel.findByIdAndDelete(service._id);
 
             return {
                 success: true,

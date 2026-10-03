@@ -14,6 +14,7 @@ import { WebSocketServer } from 'ws';
 import { makeServer } from 'graphql-ws';
 import jwt from 'jsonwebtoken';
 import logger from './logger';
+import { GraphQLScalarType, Kind } from 'graphql';
 
 export default new class Handler {
     public router: Router = express.Router()
@@ -130,7 +131,29 @@ export default new class Handler {
                 ${mutationDefs.length > 0 ? `type Mutation { ${mutationDefs.join('\n                    ')} }` : ''}
             `;
 
-            const resolvers: any = { Query: {}, Mutation: {} };
+            const resolvers: any = { 
+                Query: {}, 
+                Mutation: {},
+                DateTime: new GraphQLScalarType({
+                    name: 'DateTime',
+                    description: 'Date custom scalar type',
+                    serialize(value: any) {
+                        return value instanceof Date ? value.toISOString() : value;
+                    },
+                    parseValue(value: any) {
+                        return new Date(value);
+                    },
+                    parseLiteral(ast: any) {
+                        if (ast.kind === Kind.INT) {
+                            return new Date(parseInt(ast.value, 10));
+                        }
+                        if (ast.kind === Kind.STRING) {
+                            return new Date(ast.value);
+                        }
+                        return null;
+                    },
+                })
+            };
             Object.values(queries).forEach((q: any) => {
                 const queryName = q.query?.split(/[\s:(]/)[0]?.trim();
                 if (queryName) resolvers.Query[queryName] = q.resolver;

@@ -1,4 +1,6 @@
 # Users Schema
+scalar DateTime
+
 type User {
   id: ID!
   email: String!
@@ -47,6 +49,16 @@ input LoginInput {
   password: String!
 }
 
+input UpdatePasswordInput {
+  oldPassword: String!
+  newPassword: String!
+}
+
+type UpdatePasswordPayload {
+  success: Boolean!
+  message: String
+}
+
 input RegisterInput {
   email: String!
   password: String!
@@ -78,6 +90,9 @@ type Service {
   methodPrices: [Float!]
   methodInstructions: String
 }
+
+# Nota: Los precios se devuelven en USD por defecto
+# Usa el parámetro 'currency' en queries para convertir
 
 enum ServiceCategory {
   STREAMING
@@ -134,6 +149,9 @@ type Order {
   productName: String!
   category: ServiceCategory!
   amount: Float!
+  currency: String
+  amountUSD: Float
+  exchangeRate: Float
   status: OrderStatus!
   createdAt: String!
   updatedAt: String!
@@ -178,6 +196,7 @@ input CreateOrderInput {
   productId: String!
   category: ServiceCategory!
   amount: Float!
+  currency: String
   paymentMethod: String!
   streamingPlan: String
   streamingDuration: String
@@ -251,5 +270,154 @@ input UpdateUserAdminInput {
   isActive: Boolean
   totalPurchases: Int
   totalSpent: Float
+}
+
+
+# Inventory Schema
+type InventoryItem {
+  id: ID!
+  serviceId: String!
+  email: String!
+  password: String!
+  pin: String
+  profileName: String
+  expiryDate: DateTime
+  isAvailable: Boolean!
+  createdAt: String!
+  updatedAt: String!
+  plan: String
+  price: Float
+  duration: String
+}
+
+type AddInventoryResponse {
+  success: Boolean!
+  message: String!
+  item: InventoryItem
+}
+
+type InventoryResponse {
+  inventory: [InventoryItem!]!
+  total: Int!
+}
+
+# Currency Rate Schema
+type CurrencyRate {
+  id: ID!
+  code: String!          # MXN, COP, USD, EUR, etc.
+  name: String!          # Peso Mexicano, Peso Colombiano, etc.
+  rate: Float!           # Tasa: 1 USD = X moneda
+  isActive: Boolean!
+  lastUpdate: String
+  updatedBy: String
+}
+
+type CurrencyRatesResponse {
+  rates: [CurrencyRate!]!
+}
+
+type UpdateCurrencyRateResponse {
+  success: Boolean!
+  message: String!
+  rate: CurrencyRate
+}
+
+type ConvertCurrencyResponse {
+  amount: Float!
+  convertedAmount: Float!
+  from: String!
+  to: String!
+  rate: Float!
+}
+
+type Query {
+  # Service queries
+  service(serviceId: String!, currency: String): Service
+  services(category: ServiceCategory, search: String, limit: Int, offset: Int): ServicesResponse!
+  
+  # Inventory queries
+  inventory(serviceId: String!): [InventoryItem!]!
+  
+  # Orders queries
+  getUserOrders: UserOrdersResponse!
+  
+  # Currency queries
+  currencyRates: CurrencyRatesResponse!
+  convertCurrency(amount: Float!, from: String!, to: String!): ConvertCurrencyResponse!
+}
+
+type UserOrdersResponse {
+  orders: [Order!]!
+  total: Int!
+}
+
+type Inventory {
+  id: ID!
+  serviceId: String!
+  email: String!
+  password: String
+  pin: String
+  profileName: String
+  plan: String
+  price: Float
+  duration: String
+  isAvailable: Boolean!
+}
+
+type Mutation {
+  addInventory(
+    serviceId: String!
+    email: String!
+    password: String!
+    pin: String
+    profileName: String
+    expiryDate: DateTime
+    plan: String
+    price: Float
+    duration: String
+  ): AddInventoryResponse!
+
+  updateInventory(
+    inventoryId: String!
+    email: String
+    password: String
+    pin: String
+    profileName: String
+    expiryDate: DateTime
+    plan: String
+    price: Float
+    duration: String
+    isAvailable: Boolean
+  ): UpdateInventoryPayload!
+
+  deleteInventory(inventoryId: String!): DeleteInventoryPayload!
+  
+  # Currency mutations
+  addCurrency(code: String!, name: String!, rate: Float!): UpdateCurrencyRateResponse!
+  updateCurrencyRate(code: String!, rate: Float!): UpdateCurrencyRateResponse!
+  toggleCurrencyActive(code: String!, isActive: Boolean!): UpdateCurrencyRateResponse!
+}
+
+input UpdateInventoryInput {
+  email: String
+  password: String
+  pin: String
+  profileName: String
+  expiryDate: DateTime
+  plan: String
+  price: Float
+  duration: String
+  isAvailable: Boolean
+}
+
+type UpdateInventoryPayload {
+  success: Boolean!
+  message: String
+  item: InventoryItem
+}
+
+type DeleteInventoryPayload {
+  success: Boolean!
+  message: String
 }
 

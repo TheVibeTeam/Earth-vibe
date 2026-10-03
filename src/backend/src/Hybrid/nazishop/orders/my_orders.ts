@@ -17,8 +17,19 @@ export default {
             logger.info({ userId, status, limit, skip }, 'Fetching user orders');
             const filter: any = { userId };
             if (status) filter.status = status;
-            const orders = await OrderModel.find(filter).limit(limit).skip(skip).sort({ createdAt: -1 });
+            const ordersFromDB = await OrderModel.find(filter).limit(limit).skip(skip).sort({ createdAt: -1 });
             const total = await OrderModel.countDocuments(filter);
+
+            const orders = ordersFromDB.map(order => {
+                const orderObject = order.toObject();
+                return {
+                    ...orderObject,
+                    id: (orderObject._id as any).toString(),
+                    createdAt: orderObject.createdAt?.toISOString(),
+                    updatedAt: orderObject.updatedAt?.toISOString(),
+                };
+            });
+
             return { orders, total };
         } catch (error: any) {
             logger.error({ error: error.message }, 'Error fetching orders');
